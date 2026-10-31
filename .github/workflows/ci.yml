@@ -27,6 +27,12 @@ jobs:
       - name: run staticcheck
         run: staticcheck ./...
 
+      - name: Set up Gosec
+        run: go install github.com/securego/gosec/v2/cmd/gosec@latest
+
+      - name: Run Gosec
+        run: gosec ./...
+
 
   style:
     name: Style
@@ -44,8 +50,4 @@ jobs:
       - name: Style conventions check
         run: test -z $(go fmt ./...)
 
-      - name: Set up Gosec
-        run: go install github.com/securego/gosec/v2/cmd/gosec@latest
 
-      - name: Run Gosec
-        run: gosec ./...
