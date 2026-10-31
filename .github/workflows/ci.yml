@@ -21,6 +21,13 @@ jobs:
       - name: Run unit tests
         run: go test -cover ./...
 
+      - name: Install staticcheck
+        run: go install honnef.co/go/tools/cmd/staticcheck@latest
+
+      - name: run staticcheck
+        run: staticcheck ./...
+
+
   style:
     name: Style
     runs-on: ubuntu-latest
@@ -42,9 +49,3 @@ jobs:
 
       - name: Run Gosec
         run: gosec ./...
-
-      - name: Install staticcheck
-        run: go install honnef.co/go/tools/cmd/staticcheck@latest
-
-      - name: run staticcheck
-        run: staticcheck ./...
