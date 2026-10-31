@@ -37,6 +37,12 @@ jobs:
       - name: Style conventions check
         run: test -z $(go fmt ./...)
 
+      - name: Set up Gosec
+        run: go install github.com/securego/gosec/v2/cmd/gosec@latest
+
+      - name: Run Gosec
+        run: gosec ./...
+
       - name: Install staticcheck
         run: go install honnef.co/go/tools/cmd/staticcheck@latest
 
